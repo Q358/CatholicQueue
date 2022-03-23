@@ -20,12 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pji(tp&t40s=m9^1)_399zouu&wgw628qsdl$r&hmola0t$ka_'
+# SECRET_KEY = 'django-insecure-pji(tp&t40s=m9^1)_399zouu&wgw628qsdl$r&hmola0t$ka_'
+SECRET_KEY = os.environ.get('CATHOLICQ_PRODUCTION_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['catholicqueue.herokuapp.com']
 
 
 # Application definition

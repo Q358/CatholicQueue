@@ -14,4 +14,4 @@ class Day(models.Model):
     dayOfWeek = models.IntegerField()
 
 class Week(models.Model):
-    weekStartDay = models.ForeignKey(Day)
+    weekStartDay = models.ForeignKey(Day, on_delete=models.CASCADE)

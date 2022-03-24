@@ -5,7 +5,7 @@ from django.db import models
 
 class Hour(models.Model):
     lineLength = models.IntegerField()
-    busynessLevel = models.CharField()
+    #busynessLevel = models.CharField(max=100)
     isCurrent = models.BooleanField()
 
 class Day(models.Model):

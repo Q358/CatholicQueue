@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'test_app',
-    'test_app.TestAppConfig'
+    'test_app.TestAppConfig',
     'debug_toolbar',
     'day',
     'week',

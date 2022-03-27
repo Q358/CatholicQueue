@@ -5,8 +5,12 @@ from django.db import models
 
 class Hour(models.Model):
     lineLength = models.IntegerField()
-    #busynessLevel = models.CharField(max=100)
+    busynessLevel = models.CharField(max_length=100)
     isCurrent = models.BooleanField()
+
+    # Shows what will show up when queried
+    def __str__(self):
+        return self.busynessLevel
 
 class Day(models.Model):
     month = models.IntegerField()

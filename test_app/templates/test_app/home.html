@@ -1,9 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <h1>Catholic Queue</h1>  
-    </body>
-</html>
+{% extends "test_app/base.html" %}
+{% block content %}
+<div class="jumbotron text-center">
+    <h1>Catholic Queue</h1>
+</div>
+    <h2>The CUA Post Office is currently</h2>
+    <!--{% if Hour.isClosed > 5 %}
+        <h2>Closed</h2>
+    {% endif %}-->
+    <div class="text-center">
+    {% if currentHour.lineLength >= 0 and currentHour.lineLength < 3 %}
+        <h1>Not Busy</h1>
+    {% endif %}
+    {% if currentHour.lineLength >= 3 and currentHour.lineLength < 5 %}
+        <h1>Somewhat Busy</h1>
+    {% endif %}
+    {% if currentHour.lineLength >= 5 and currentHour.lineLength < 7 %}
+        <h1>Busy</h1>
+    {% endif %}
+    {%  if currentHour.lineLength >= 7 %}
+        <h1>Very Busy</h1>  
+    {% endif %}
+    </div>
+{% endblock content %}

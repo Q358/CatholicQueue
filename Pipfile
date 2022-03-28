@@ -9,6 +9,7 @@ django-debug-toolbar = "*"
 gunicorn = "*"
 waitress = "*"
 django-heroku = "*"
+pillow = "*"
 
 [dev-packages]
 

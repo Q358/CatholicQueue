@@ -1,0 +1,34 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+
+    <div class = "container">
+        <!--Image Upload-->
+        <h2 class = "my-4">Add Hero of the Day</h2>
+        <form method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type = "file" name = "upload" accept="image/*">
+            <br>
+            <button class="btn btn-dark my-4" type="submit">Submit</button>
+        </form>
+        <h2 class = "my-4">Hero of the Day</h2>
+        <div class = "row">
+            {% if file_url %}
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                <!--
+                    <img src="{{ file_url }}" class="img-fluid">
+                    Not sure which one is the one to use.
+                -->
+                <img src = "https://image.knowingkorea.org/img/image/00/01/61/c1613PNZ_o.jpg" class = "img-fluid">
+                <br>
+                <br>
+                <a class="btn btn-dark my-4" href="/">Return to home</a>
+            </div>    
+            {% else %}
+            <p>No Hero Added</p>
+            {% end if %}    
+        </div>
+    </div>
+
+
+{% endblock %}

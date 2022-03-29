@@ -1,24 +1,30 @@
 {% extends "test_app/base.html" %}
 {% block content %}
-<div class="jumbotron text-center">
+<!-- <div class="jumbotron text-center">
     <h1>Catholic Queue</h1>
-</div>
+</div> -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h2>The CUA Post Office is currently</h2>
     <!--{% if Hour.isClosed > 5 %}
         <h2>Closed</h2>
     {% endif %}-->
     <div class="text-center">
     {% if currentHour.lineLength >= 0 and currentHour.lineLength < 3 %}
-        <h1>Not Busy</h1>
+        <h1 style="color:green">Not Busy</h1>
     {% endif %}
     {% if currentHour.lineLength >= 3 and currentHour.lineLength < 5 %}
-        <h1>Somewhat Busy</h1>
+        <h1 style="color:yellow"></h1> Somewhat Busy</h1>
     {% endif %}
     {% if currentHour.lineLength >= 5 and currentHour.lineLength < 7 %}
-        <h1>Busy</h1>
+        <h1 style="color:orange">Busy</h1>
     {% endif %}
     {%  if currentHour.lineLength >= 7 %}
-        <h1>Very Busy</h1>  
+        <h1 style="color:red">Very Busy</h1>  
     {% endif %}
     </div>
 {% endblock content %}

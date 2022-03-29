@@ -1,12 +1,11 @@
 {% extends "test_app/base.html" %}
+{% load static %}
 {% block content %}
 <html>
     <body>
         <h1>About</h1>
         <h1>Our Purpose</h1>
-        <!--- 
-        <img src = "garvey.jpg" alt="Garvey" width = "460" height = "345"/>
-        -->
+        <img src = "{% static 'images/garvey.jpg' %}" alt="Garvey" width = "460" height = "345"/>
     </body>
 <html>    
 {% endblock content %}

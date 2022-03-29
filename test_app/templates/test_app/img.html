@@ -1,12 +1,17 @@
+{% extends "test_app/base.html" %}
 {% load static %}
-<!doctype html>
-<html>
+{% block content %}
     <head>
-        <title>HTML Inserting an Image</title>   
+        <title>Test Image</title>   
     </head>
     <body>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <h1>Our Purpose</h1>
         <img  src="{% static 'images/garvey.jpg' %}" alt="Garvey">
     </body>
-</html>
-
+{% endblock %}

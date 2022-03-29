@@ -24,4 +24,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('test_app.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
-] + static(doc_url = settings.MEDIA_URL, doc_root = settings.MEDIA_ROOT)
+] + static(settings. STATIC_URL,document_root=settings. STATIC_ROOT)

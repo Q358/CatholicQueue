@@ -14,6 +14,7 @@ while(1==1):
 	line = currentHour.lineLength
 	if(line > 0):
 		# Starts decrementing lineLength every 5 mins
+		timer
 		# Sets busynessLevel - might be better to do this in the html
 		#setBusyness(currentHour, line)
 	if(buttonPushed):
@@ -23,12 +24,12 @@ while(1==1):
 
 
 def setBusyness(hour, line):
-	hour.busynessLevel = "Is Basically Empty"
+	hour.busynessLevel = "Basically Empty"
 	if(line > 3):
-		hour.busynessLevel = "Has a Short Line"
+		hour.busynessLevel = "Not That Busy"
 		if(line > 5):
-			hour.busynessLevel = "Is Somewhat Busy"
+			hour.busynessLevel = "Somewhat Busy"
 			if(line > 7):
-				hour.busynessLevel = "Is Busy"
+				hour.busynessLevel = "Busy"
 				if(line > 10):
-					hour.busynessLevel = "Is Packed"
+					hour.busynessLevel = "Absolutely Packed"

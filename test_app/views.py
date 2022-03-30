@@ -21,11 +21,15 @@ def home(request):
     context = {
         'title': 'CatholicQueue | Home',
         'currentHour': Hour.objects.filter(isCurrent = True).first(),
-        'hours': Hour.objects.all()
+        'hours': Hour.objects.all(),
+        'data': [1, 2, 3, 4, 5]
     }
     return render(request, 'test_app/home.html', context)
 
 def upload(request):
+    context = {
+        'title': 'CatholicQueue | Chat'
+    }
     if request.method == 'POST' and request.FILES['upload']:
         upload = request.FILES['upload']
         fss = FileSystemStorage()
@@ -38,5 +42,5 @@ def img(request):
     return render(request, 'test_app/img.html')
 
 def about(request):
-   return render(request, 'test_app/about.html', {'title': 'About'})
+   return render(request, 'test_app/about.html', {'title': 'CatholicQueue | About'})
 

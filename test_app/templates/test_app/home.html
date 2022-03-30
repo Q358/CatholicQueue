@@ -1,13 +1,10 @@
 {% extends "test_app/base.html" %}
+{% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'test_app/main.css' %}">
 <!-- <div class="jumbotron text-center">
     <h1>Catholic Queue</h1>
 </div> -->
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     <h2 style="text-align: center">The CUA Post Office is currently</h2>
     <!--{% if Hour.isClosed > 5 %}
@@ -29,9 +26,45 @@
     {%  if currentHour.lineLength >= 10 %}
         <h1 style="color:darkred; font-weight: bold;">Absolutely Packed</h1>  
     {% endif %}
-
-    <canvas>
-        
-    </canvas>
+    <br>
+    <hr>
+    <br>
+    <h2>Average Busyness Graph</h2>
+    <!-- Line Chart -->
+    <div id="container" style="width:100%">
+        <canvas id="weeklyChart" width="400" height="200"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+        const ctx = document.getElementById('weeklyChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                datasets: [{
+                    label: 'Queue Length',
+                    backgroundColor: '#FF5757',
+                    data: [{% for hour in hours %}{{hour.lineLength}}{% endfor %}]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        // $(function () {
+        //     var $weeklyChart = $("#weeklyChart");
+        //     $.ajax({
+        //         url: $weeklyChart.data("url"),
+        //         success: function(data) {
+        //             //  Put Chart Stuff Here
+        //         }
+        //     });
+        // });
+    </script>
     </div>
 {% endblock content %}

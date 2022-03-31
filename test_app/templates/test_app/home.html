@@ -7,9 +7,9 @@
 </div> -->
     <br>
     <h2 style="text-align: center">The CUA Post Office is currently</h2>
-    <!--{% if Hour.isClosed > 5 %}
-        <h2>Closed</h2>
-    {% endif %}-->
+    {% if currentHour.isOpen == False %}
+        <h2 style="color:gray">Closed</h2>
+    {% endif %}
     <div class="text-center">
     {% if currentHour.lineLength >= 0 and currentHour.lineLength < 3 %}
         <h1 style="color:green">Basically Empty</h1>

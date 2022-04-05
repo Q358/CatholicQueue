@@ -15,7 +15,7 @@ class Hour(models.Model):
 
     # Shows what will show up when queried
     def __str__(self):
-        return self.hourOfDay
+        return str(self.hourOfDay)
 
 class Day(models.Model):
     month = models.IntegerField()

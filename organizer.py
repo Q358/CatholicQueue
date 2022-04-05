@@ -28,15 +28,10 @@ while(1==1):
 			# Starts decrementing lineLength every 5 mins
 			if(startTime == None):
 				startTime = clock.minute
-			else if(time.perf_counter() - time.):
-				
+			elif(time.perf_counter() - clock.minute >= 5): # needs to be fixed at some point
+				pass
 			# Sets busynessLevel - might be better to do this in the html
 			#setBusyness(currentHour, line)
-		if(buttonPushed):
-			currentHour = Hour.objects.filter(isCurrent=True).first()
-			currentHour.lineLength += 1
-			currentHour.save()
-
 
 def setBusyness(hour, line):
 	hour.busynessLevel = "Basically Empty"

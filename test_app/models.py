@@ -8,7 +8,7 @@ class Queue(models.Model):
 
 class Hour(models.Model):
     lineLength = models.IntegerField()
-    busynessLevel = models.CharField(max_length=100)
+    #busynessLevel = models.CharField(max_length=100)
     isCurrent = models.BooleanField()
     hourOfDay = models.IntegerField()
     isOpen = models.BooleanField()

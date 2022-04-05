@@ -40,19 +40,28 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                labels: [{% for hour in hours %}{{hour.hourOfDay}},{% endfor %}],
                 datasets: [{
                     label: 'Queue Length',
-                    backgroundColor: '#FF5757',
-                    data: [{% for hour in hours %}{{hour.lineLength}}{% endfor %}]
+                    backgroundColor: 'red',
+                    data: [{% for hour in hours %}{{hour.lineLength}},{% endfor %}]
                     }]
                 },
-                options: {
-                    responsive: true,
-                    scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+		                    ticks: {
+		                        beginAtZero:true
+		                    }
+		                }],
+		                xAxes: [{
+		                    display: true,
+		                    scaleLabel: {
+		                        display: true,
+		                        labelString: 'Day'
+		                    }                        
+		                }]
                 }
             }
         });

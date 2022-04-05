@@ -10,6 +10,7 @@ gunicorn = "*"
 waitress = "*"
 django-heroku = "*"
 pillow = "*"
+certbot = "*"
 
 [dev-packages]
 

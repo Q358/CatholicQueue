@@ -1,6 +1,8 @@
 {% extends "test_app/base.html" %}
 {% load static %}
 {% block content %}
+
+
 <link rel="stylesheet" type="text/css" href="{% static 'test_app/main.css' %}">
     <br>
     <h2 style="text-align: center">The CUA Post Office is currently</h2>
@@ -28,11 +30,19 @@
     <br>
     <button onclick="switch_type()"> Today </button>
     <button onclick="switch_type()"> This Week </button>
+    
+    
+
     <!-- <h2>Weekly Graph</h2> -->
     <!-- Line Chart -->
-    <div id="container" style="width:100%">
-        <canvas id="weeklyChart" width="400" height="200"></canvas>
+    <div id="container" style="width: 100%">
+        <canvas id="weeklyChart" width=window.width height=window.height></canvas>
     </div>
+
+    <!--Scaling to the entire screen-->
+    
+
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
         const ctx = document.getElementById('weeklyChart').getContext('2d');

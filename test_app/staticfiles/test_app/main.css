@@ -12,17 +12,31 @@
     padding-top: 10px;
     background-color: whitesmoke;
 }
+#busyness{
+    font-size: 50px;
+    font-weight: bold;
+}
 .button {
-    border: none;
-    color: blue;
-    padding: 15px 32px;
+    color: #fff;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     margin: 4px 5px;
-    cursor: auto;
-  }
+    cursor: pointer;
+    background-color: rgb(207, 13, 13);
+    padding: .4em;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 6px;
+    font-family: 'Amiri';
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+}
+.button:hover {
+    border: none;
+    background: rgb(255, 0, 0);
+    box-shadow: 0px 0px 1px #777;
+}
 .bg-faded{
     background-color:#990000;
 }

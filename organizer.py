@@ -1,11 +1,11 @@
 # heroku run lineincrementer.py
 from postalservice.wsgi import *
-#from time import *
+from time import *
 from tracemalloc import start
 from test_app.models import Queue, Hour, Day, Week, Month
-from datetime import *
+#from datetime import *
 
-clock = time.CLOCK_REALTIME
+clock = time.clock_gettime(0)
 startTime = None
 queue = Queue.objects.first()
 currentHour = Hour.objects.filter(isCurrent=True).first()

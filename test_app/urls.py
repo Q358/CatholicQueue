@@ -7,5 +7,6 @@ urlpatterns = [
     path("", views.home, name = "home"),
     path('upload', views.upload, name = "upload"),
     path('img', views.img),
-    path('about', views.about)
+    path('about', views.about),
+    path('.well-known/acme-challenge/h0CofNTCyRTv8kNXJPEeoz91zh_S9MhFJLu8gHqYQ0I', views.acme)
 ] 

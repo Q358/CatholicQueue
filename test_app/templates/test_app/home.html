@@ -2,20 +2,17 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'test_app/main.css' %}">
-<!-- <div class="jumbotron text-center">
-    <h1>Catholic Queue</h1>
-</div> -->
     <br>
     <h2 style="text-align: center">The CUA Post Office is currently</h2>
     {% if currentHour.isOpen == False %}
-        <h2 style="color:gray">Closed</h2>
+        <h1 style="color:darkgray">Closed</h1>
     {% endif %}
     <div class="text-center">
     {% if currentHour.lineLength >= 0 and currentHour.lineLength < 3 %}
         <h1 style="color:green">Basically Empty</h1>
     {% endif %}
     {% if currentHour.lineLength >= 3 and currentHour.lineLength < 5 %}
-        <h1 style="color:yellow"></h1>Not That Busy</h1>
+        <h1 style="color:yellowgreen">Not That Busy</h1>
     {% endif %}
     {% if currentHour.lineLength >= 5 and currentHour.lineLength < 7 %}
         <h1 style="color:orange">Somewhat Busy</h1>
@@ -29,6 +26,8 @@
     <br>
     <hr>
     <br>
+    <button onclick="switch_type()"> Today </button>
+    <button onclick="switch_type()"> This Week </button>
     <!-- <h2>Weekly Graph</h2> -->
     <!-- Line Chart -->
     <div id="container" style="width:100%">
@@ -43,25 +42,25 @@
                 labels: [{% for hour in hours %}{{hour.hourOfDay}},{% endfor %}],
                 datasets: [{
                     label: 'Queue Length',
-                    backgroundColor: 'red',
+                    backgroundColor: '#EA291F',
                     data: [{% for hour in hours %}{{hour.lineLength}},{% endfor %}]
-                    }]
-                },
+                }]
+            },
             options: {
                 responsive: true,
                 scales: {
                     yAxes: [{
-		                    ticks: {
-		                        beginAtZero:true
-		                    }
-		                }],
-		                xAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                }
+		            }],
+		            xAxes: [{
+		                display: true,
+		                scaleLabel: {
 		                    display: true,
-		                    scaleLabel: {
-		                        display: true,
-		                        labelString: 'Day'
-		                    }                        
-		                }]
+		                    labelString: 'Day'
+		                }                        
+		            }]
                 }
             }
         });

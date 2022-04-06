@@ -22,7 +22,6 @@ def home(request):
         'title': 'CatholicQueue | Home',
         'currentHour': Hour.objects.filter(isCurrent = True).first(),
         'hours': Hour.objects.all(),
-        'data': [1, 2, 3, 4, 5]
     }
     return render(request, 'test_app/home.html', context)
 
@@ -43,4 +42,7 @@ def img(request):
 
 def about(request):
    return render(request, 'test_app/about.html', {'title': 'CatholicQueue | About'})
+
+def acme(request):
+    return render(request, 'test_app/acme.html')
 

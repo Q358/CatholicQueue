@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 #from postalservice import test_app
 #from django.http import HttpResponse
-from .models import Hour
+from .models import Hour, Day, Week
 from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
@@ -22,6 +22,7 @@ def home(request):
         'title': 'CatholicQueue | Home',
         'currentHour': Hour.objects.filter(isCurrent = True).first(),
         'hours': Hour.objects.all(),
+        'days': Week.objects.first()
     }
     return render(request, 'test_app/home.html', context)
 

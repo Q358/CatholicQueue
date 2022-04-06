@@ -1,78 +1,115 @@
 {% extends "test_app/base.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'test_app/main.css' %}">
     <br>
     <h2 style="text-align: center">The CUA Post Office is currently</h2>
     {% if currentHour.isOpen == False %}
-        <h1 style="color:darkgray">Closed</h1>
+        <p id="busyness" style="color:darkgray">Closed</p>
     {% endif %}
     <div class="text-center">
     {% if currentHour.lineLength >= 0 and currentHour.lineLength < 3 %}
-        <h1 style="color:green">Basically Empty</h1>
+        <h2 id="busyness" style="color:green">Basically Empty</h2>
     {% endif %}
     {% if currentHour.lineLength >= 3 and currentHour.lineLength < 5 %}
-        <h1 style="color:yellowgreen">Not That Busy</h1>
+        <h2 id="busyness" style="color:yellowgreen">Not That Busy</h2>
     {% endif %}
     {% if currentHour.lineLength >= 5 and currentHour.lineLength < 7 %}
-        <h1 style="color:orange">Somewhat Busy</h1>
+        <p id="busyness" style="color:orange">Somewhat Busy</p>
     {% endif %}
     {%  if currentHour.lineLength >= 7 and currentHour.lineLength < 10 %}
-        <h1 style="color:red">Very Busy</h1>  
+        <h2 id="busyness" style="color:red">Very Busy</h2>  
     {% endif %}
     {%  if currentHour.lineLength >= 10 %}
-        <h1 style="color:darkred; font-weight: bold;">Absolutely Packed</h1>  
+        <h2 id="busyness" style="color:darkred; font-weight: bold;">Absolutely Packed</h2>  
     {% endif %}
     <br>
     <hr>
     <br>
-    <button onclick="switch_type()"> Today </button>
-    <button onclick="switch_type()"> This Week </button>
+    <button class="button" type="button" onclick="today()"> Today </button>
+    <button class="button" type="button" onclick="thisweek()"> This Week </button>
     <!-- <h2>Weekly Graph</h2> -->
     <!-- Line Chart -->
     <div id="container" style="width:100%">
-        <canvas id="weeklyChart" width="400" height="200"></canvas>
+        <canvas id="Chart" width="400" height="200"></canvas>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
-        const ctx = document.getElementById('weeklyChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [{% for hour in hours %}{{hour.hourOfDay}},{% endfor %}],
-                datasets: [{
-                    label: 'Queue Length',
-                    backgroundColor: '#EA291F',
-                    data: [{% for hour in hours %}{{hour.lineLength}},{% endfor %}]
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    yAxes: [{
-		                ticks: {
-		                    beginAtZero:true
-		                }
-		            }],
-		            xAxes: [{
-		                display: true,
-		                scaleLabel: {
-		                    display: true,
-		                    labelString: 'Day'
-		                }                        
-		            }]
+        var chart;
+        const ctx = document.getElementById('Chart').getContext('2d');
+        today();
+        function today()
+        {
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for hour in hours %}{{hour.hourOfDay}},{% endfor %}],
+                    datasets: [{
+                        label: 'Queue Length',
+                        backgroundColor: '#EA291F',
+                        data: [{% for hour in hours %}{{hour.lineLength}},{% endfor %}]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }],
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Day'
+                            }                        
+                        }]
+                    }
                 }
-            }
-        });
-        // $(function () {
-        //     var $weeklyChart = $("#weeklyChart");
-        //     $.ajax({
-        //         url: $weeklyChart.data("url"),
-        //         success: function(data) {
-        //             //  Put Chart Stuff Here
-        //         }
-        //     });
-        // });
+            });
+            // $(function () {
+            //     var $weeklyChart = $("#weeklyChart");
+            //     $.ajax({
+            //         url: $weeklyChart.data("url"),
+            //         success: function(data) {
+            //             //  Put Chart Stuff Here
+            //         }
+            //     });
+            // });
+        }
+
+        function thisweek()
+        {
+            // if(chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for day in days %}{{day.dayOfWeek}},{% endfor %}],
+                    datasets: [{
+                        label: 'Queue Length',
+                        backgroundColor: 'orange',
+                        data: [{% for day in days %}{{day.le}},{% endfor %}]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }],
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Day'
+                            }                        
+                        }]
+                    }
+                }
+            });
+        }
     </script>
     </div>
 {% endblock content %}

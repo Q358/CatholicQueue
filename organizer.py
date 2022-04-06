@@ -3,7 +3,7 @@ from postalservice.wsgi import *
 from time import *
 from tracemalloc import start
 from test_app.models import Queue, Hour, Day, Week, Month
-#from datetime import *
+from datetime import *
 
 clock = time.clock_gettime(0)
 startTime = None

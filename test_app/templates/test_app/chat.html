@@ -3,8 +3,10 @@
 {% block content %}
 
     <div class = "container">
+        <h1>Tell CUA Something:</h1>
+        <input>
         <!--Image Upload-->
-        <h2 class = "my-4">Add Hero of the Day</h2>
+        <h2 class = "my-4">Add Image</h2>
         <form method = "post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type = "file" name = "upload" accept="image/*">

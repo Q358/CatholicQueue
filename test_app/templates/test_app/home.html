@@ -1,126 +1,113 @@
 {% extends "test_app/base.html" %}
 {% load static %}
 {% block content %}
-<<<<<<< HEAD
-
 
 <link rel="stylesheet" type="text/css" href="{% static 'test_app/main.css' %}">
-=======
->>>>>>> bc96c4195f78ed2281c85eeb9150bac2461af465
-    <br>
-    <h2 style="text-align: center">The CUA Post Office is currently</h2>
-    {% if currentHour.isOpen == False %}
-        <p id="busyness" style="color:darkgray">Closed</p>
-    {% endif %}
-    <div class="text-center">
-    {% if currentHour.lineLength >= 0 and currentHour.lineLength < 3 %}
-        <h2 id="busyness" style="color:green">Basically Empty</h2>
-    {% endif %}
-    {% if currentHour.lineLength >= 3 and currentHour.lineLength < 5 %}
-        <h2 id="busyness" style="color:yellowgreen">Not That Busy</h2>
-    {% endif %}
-    {% if currentHour.lineLength >= 5 and currentHour.lineLength < 7 %}
-        <p id="busyness" style="color:orange">Somewhat Busy</p>
-    {% endif %}
-    {%  if currentHour.lineLength >= 7 and currentHour.lineLength < 10 %}
-        <h2 id="busyness" style="color:red">Very Busy</h2>  
-    {% endif %}
-    {%  if currentHour.lineLength >= 10 %}
-        <h2 id="busyness" style="color:darkred; font-weight: bold;">Absolutely Packed</h2>  
-    {% endif %}
-    <br>
-    <hr>
-    <br>
-    <button class="button" type="button" onclick="today()"> Today </button>
-    <button class="button" type="button" onclick="thisweek()"> This Week </button>
-    <!-- <h2>Weekly Graph</h2> -->
-    <!-- Line Chart -->
-    <div id="container" style="width:100%">
-        <canvas id="Chart" width="400" height="200"></canvas>
-    </div>
-
-    <!--Scaling to the entire screen-->
-    
 
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <script>
-        var chart;
-        const ctx = document.getElementById('Chart').getContext('2d');
-        today();
-        function today()
-        {
-            chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [{% for hour in hours %}{{hour.hourOfDay}},{% endfor %}],
-                    datasets: [{
-                        label: 'Queue Length',
-                        backgroundColor: '#EA291F',
-                        data: [{% for hour in hours %}{{hour.lineLength}},{% endfor %}]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }],
-                        xAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Day'
-                            }                        
-                        }]
-                    }
-                }
-            });
-            // $(function () {
-            //     var $weeklyChart = $("#weeklyChart");
-            //     $.ajax({
-            //         url: $weeklyChart.data("url"),
-            //         success: function(data) {
-            //             //  Put Chart Stuff Here
-            //         }
-            //     });
-            // });
+<h2 style="text-align: center; line-height:1;">The CUA Post Office is currently</h2>
+{% if currentHour.isOpen == False %}
+    <p id="busyness" style="color:darkgray">Closed</p>
+{% endif %}
+<div class="text-center">
+{% if currentHour.lineLength >= 0 and currentHour.lineLength < 3 %}
+    <p id="busyness" style="color:green">Basically Empty</p>
+{% endif %}
+{% if currentHour.lineLength >= 3 and currentHour.lineLength < 5 %}
+    <p id="busyness" style="color:yellowgreen">Not That Busy</p>
+{% endif %}
+{% if currentHour.lineLength >= 5 and currentHour.lineLength < 7 %}
+    <p id="busyness" style="color:orange">Somewhat Busy</p>
+{% endif %}
+{%  if currentHour.lineLength >= 7 and currentHour.lineLength < 10 %}
+    <h3 id="busyness" style="color:red">Very Busy</h3>  
+{% endif %}
+{%  if currentHour.lineLength >= 10 %}
+    <p id="busyness" style="color:darkred; font-weight: bold;">Absolutely Packed</p>  
+{% endif %}
+
+<hr>
+
+<button class="button" type="button" onclick="today()"> Today </button>
+<button class="button" type="button" onclick="thisweek()"> This Week </button>
+<!-- <h2>Weekly Graph</h2> -->
+<!-- Line Chart -->
+<!-- <div id="container" style="width:100%">
+    <canvas id="Chart" width="400" height="150"></canvas>
+</div> -->
+<!--Scaling to the entire screen-->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+<!-- Chart Placement[2] -->
+  <div id="myChart"></div>
+<script>
+    let myConfig = {
+      type: 'area',
+    //   title: {
+    //     text: 'Data Basics',
+    //     fontSize: 24,
+    //   },
+
+      scaleX: {
+        // Set scale label
+        label: { text: 'Days' },
+        // Convert text on scale indices
+        labels: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
+      },
+      scaleY: {
+        // Scale label with unicode character
+        label: { text: 'Average Queue' }
+      },
+      plot: {
+        // Animation docs here:
+        // https://www.zingchart.com/docs/tutorials/styling/animation#effect
+        animation: {
+          effect: 'ANIMATION_EXPAND_BOTTOM',
+          method: 'ANIMATION_STRONG_EASE_OUT',
+          
+          speed: 275,
         }
-
-        function thisweek()
-        {
-            // if(chart) chart.destroy();
-            chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [{% for day in days %}{{day.dayOfWeek}},{% endfor %}],
-                    datasets: [{
-                        label: 'Queue Length',
-                        backgroundColor: 'orange',
-                        data: [{% for day in days %}{{day.le}},{% endfor %}]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }],
-                        xAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Day'
-                            }                        
-                        }]
-                    }
-                }
-            });
+      },
+    "scaleX": {
+      "values": ["10","11","12","1","2"],
+      "placement": "default",
+      "tick": {
+        "size": 58,
+        "placement": "cross"
+      },
+      "itemsOverlap": true,
+      "item": {
+        "offsetY": -55
+      }
+    },
+    "scaleX2": {
+        "values": ["2013", "2014"],
+        "placement": "default",
+        "tick": {
+            "size": 20,
+        },
+        "item": {
+            "offsetY": -15
         }
-    </script>
-    </div>
+    },
+      series: [
+        {
+          // Plot 1 values, linear data
+          values: [23,20,27,29,25,17,15],
+          text: 'Week 1',
+        }
+      ]
+    };
+
+    // Render Method[3]
+    zingchart.render({
+      id: 'myChart',
+      data: myConfig,
+      height:'10%',
+      width:'100%'
+    });
+</script>
+</div>
 {% endblock content %}

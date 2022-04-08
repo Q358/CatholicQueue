@@ -26,7 +26,7 @@ def home(request):
     }
     return render(request, 'test_app/home.html', context)
 
-def upload(request):
+def chat(request):
     context = {
         'title': 'CatholicQueue | Chat'
     }
@@ -36,7 +36,7 @@ def upload(request):
         file = fss.save(upload.name, upload)
         file_url = fss.url(file)
         return render(request, 'test_app/upload.html', {file.url:file_url})
-    return render(request, 'test_app/upload.html', {'title': 'CatholicQueue | Chat'})
+    return render(request, 'test_app/chat.html', {'title': 'CatholicQueue | Chat'})
 
 def img(request):
     return render(request, 'test_app/img.html')

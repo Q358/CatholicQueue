@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('hello/', views.say_hello),
     path("", views.home, name = "home"),
-    path('upload', views.upload, name = "upload"),
+    path('chat', views.chat, name = "chat"),
     path('img', views.img),
     path('about', views.about),
     path('.well-known/acme-challenge/h0CofNTCyRTv8kNXJPEeoz91zh_S9MhFJLu8gHqYQ0I', views.acme)

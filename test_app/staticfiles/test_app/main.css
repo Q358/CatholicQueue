@@ -1,5 +1,7 @@
 @media screen and (max-width: 481px) {
-    
+    #logo{
+        width: 100%;
+    }
 }
 #logo{
     font-family: "Amiri", Georgia, Times, "Times New Roman", serif;

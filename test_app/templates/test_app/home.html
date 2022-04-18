@@ -2,28 +2,25 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'test_app/main.css' %}">
-
-
-<h2 style="text-align: center; line-height:1;">The CUA Post Office is currently</h2>
+<h1 style="text-align: center; line-height:1;">The CUA Post Office is currently</h1>
 {% if currentHour.isOpen == False %}
-    <p id="busyness" style="color:darkgray">Closed</p>
+    <h2 id="busyness" style="color:darkgray">Closed</h2>
 {% endif %}
 <div class="text-center">
 {% if currentHour.lineLength >= 0 and currentHour.lineLength < 3 %}
-    <p id="busyness" style="color:green">Basically Empty</p>
+    <h2 id="busyness" style="color:green">Basically Empty</h2>
 {% endif %}
 {% if currentHour.lineLength >= 3 and currentHour.lineLength < 5 %}
-    <p id="busyness" style="color:yellowgreen">Not That Busy</p>
+    <h2 id="busyness" style="color:yellowgreen">Not That Busy</h2>
 {% endif %}
 {% if currentHour.lineLength >= 5 and currentHour.lineLength < 7 %}
-    <p id="busyness" style="color:orange">Somewhat Busy</p>
+    <h2 id="busyness" style="color:orange">Somewhat Busy</h2>
 {% endif %}
 {%  if currentHour.lineLength >= 7 and currentHour.lineLength < 10 %}
-    <h3 id="busyness" style="color:red">Very Busy</h3>  
+    <h2 id="busyness" style="color:red">Very Busy</h2>  
 {% endif %}
 {%  if currentHour.lineLength >= 10 %}
-    <p id="busyness" style="color:darkred; font-weight: bold;">Absolutely Packed</p>  
+    <h2 id="busyness" style="color:darkred; font-weight: bold;">Absolutely Packed</h2>  
 {% endif %}
 
 <hr>
@@ -38,7 +35,6 @@
 <!--Scaling to the entire screen-->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 
 <!-- Chart Placement[2] -->
   <div id="myChart"></div>
@@ -50,7 +46,7 @@
     {
         if(chart) chart.destroy();
         chart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: [{% for hour in hours %}{{hour.hourOfDay}},{% endfor %}],
                 datasets: [{

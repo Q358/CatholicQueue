@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class = "container">
-        <h1>Tell CUA Something:</h1>
+        <h1>Show CUA Something:</h1>
         <input>
         <!--Image Upload-->
         <h2 class = "my-4">Add Image</h2>
@@ -13,7 +13,7 @@
             <br>
             <button class="btn btn-dark my-4" type="submit">Submit</button>
         </form>
-        <h2 class = "my-4">Hero of the Day</h2>
+        <h2 class = "my-4">Recent Posts</h2>
         <div class = "row">
             {% if file_url %}
             <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
@@ -27,9 +27,20 @@
                 <a class="btn btn-dark my-4" href="/">Return to home</a>
             </div>    
             {% else %}
-            <p>No Hero Added</p>
+            <p>No Posts Yet</p>
             {% endif %}    
         </div>
+        <br>
+        <form action="/action_page.php">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="John"><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="Doe"><br><br>
+            <h2>Chat With Us</h2>
+            <input type="text" , size = "500" , maxlength="500">
+            <input type="submit" value="Submit">
+            <!--<input type="text" , size = "500" , maxlength="500">-->
+        </form>
     </div>
 
 

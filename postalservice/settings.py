@@ -144,4 +144,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_TRUSTED_ORIGINS = ['https://www.catholicqueue.site','https://*.127.0.0.1']
+
 django_heroku.settings(locals())

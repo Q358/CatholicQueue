@@ -1,12 +1,13 @@
 {% extends "test_app/base.html" %}
-
+{% load static %}
 {% block content %}
 
     <div class = "container">
-        <h1>Show CUA Something:</h1>
-        <input>
+        <img src="{% static 'images/construction.jpg' %}" id="bg" height="500" width="100%" alt="Under Construction">
+        <!-- <h1>Show CUA Something:</h1>
+        <input> -->
         <!--Image Upload-->
-        <h2 class = "my-4">Add Image</h2>
+        <!-- <h2 class = "my-4">Add Image</h2>
         <form method = "post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type = "file" name = "upload" accept="image/*">
@@ -16,12 +17,12 @@
         <h2 class = "my-4">Recent Posts</h2>
         <div class = "row">
             {% if file_url %}
-            <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-4"> -->
                 <!--
                     <img src="{{ file_url }}" class="img-fluid">
                     Not sure which one is the one to use.
                 -->
-                <img src = "https://image.knowingkorea.org/img/image/00/01/61/c1613PNZ_o.jpg" class = "img-fluid">
+                <!-- <img src = "https://image.knowingkorea.org/img/image/00/01/61/c1613PNZ_o.jpg" class = "img-fluid">
                 <br>
                 <br>
                 <a class="btn btn-dark my-4" href="/">Return to home</a>
@@ -40,7 +41,7 @@
             <input type="text" , rows = "10" , colums="50">
             <input type="submit" value="Submit">
         </form>
-    </div>
+    </div> -->
 
 
 {% endblock %}

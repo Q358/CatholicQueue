@@ -17,6 +17,7 @@
 #busyness{
     font-size: 50px;
     font-weight: bold;
+    font-family: "Amiri", Georgia, Times, "Times New Roman", serif;
 }
 .button {
     color: #fff;
@@ -62,4 +63,10 @@ hr {
     border-bottom: 2px solid #333;
     /* box-shadow: 0 20px 20px -20px #333; */
     margin: -50px auto 10px; 
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
   }

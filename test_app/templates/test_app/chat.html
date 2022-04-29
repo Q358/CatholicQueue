@@ -1,8 +1,9 @@
 {% extends "test_app/base.html" %}
-
+{% load static %}
 {% block content %}
 
     <div class = "container">
+        <img src="{% static 'images/construction.jpg' %}" height="500"  width="100%"alt="Pardon our appearance">
         <h1>Show CUA Something:</h1>
         <input>
         <!--Image Upload-->

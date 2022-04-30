@@ -91,8 +91,8 @@
                 datasets: [{
                     label: 'Queue Length',
                     xAxisID:'xAxis1',
-                    backgroundColor: 'orange', //{% for day in days %}{{day.le}},{% endfor %}
-                    data: [1,2,3,4,5,2,4] //[1,2,3,4,2,6,4,8,9,7,11,5,2,3,5,7,9,0,1,2,3,8,3,4,8,5,2,1,1,2,3,2,5,1,3,6]
+                    backgroundColor: 'orange', {% for day in days %}{{day.le}},{% endfor %}
+                    data: {% for day in days %}{{day.length}},{% endfor %}//[1,2,3,4,2,6,4,8,9,7,11,5,2,3,5,7,9,0,1,2,3,8,3,4,8,5,2,1,1,2,3,2,5,1,3,6] // [1,2,3,4,5,2,4,2,1,2,3,4,3,6,8,4,2,2,3,5,2,1,1,3,4,2] 
                 },
                 {
                     // xAxisID:'xAxis2',
